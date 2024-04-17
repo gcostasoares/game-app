@@ -10,12 +10,12 @@
             <v-btn class="bg-green" @click="startGame" :disabled="gameStarted">Start</v-btn>
           </v-row>
           <v-row justify="center">
-            <v-sheet class="d-flex justify-center align-center flex-wrap my-12" width="20vw">
+            <v-sheet class="d-flex justify-center align-center flex-wrap my-12 blocks" width="20vw" min-width="200px" min-height="200px">
             
             <v-btn  v-for="(block, index) in colors" :key="index"
                 :style="{ 'background-color': index === selectedBlockComputer[indexOfTurns] ? selectedColor() : block.color }" 
                 @click="toggleBlocks(index)"
-                width="10vw" height="10vw"
+                width="10vw" height="10vw" min-width="100px" min-height="100px"
                 >
                 
             </v-btn>
@@ -164,6 +164,7 @@ h3 {
 .router-link {
   text-decoration: none
 }
+
 
 </style>
   

@@ -3,7 +3,7 @@
     <v-main>
       <section v-if="!gameStarted">
         <v-row justify="center" class="my-12 bg-transparent">
-          <v-sheet class="my-3 my-12 bg-transparent">
+          <v-sheet class="my-3 my-12 bg-transparent text-center">
             <h2>You have 60 seconds to finish the game</h2>
           </v-sheet>
         </v-row>
@@ -14,23 +14,20 @@
         </v-row> 
       </section>
       <section v-else>
-        <v-row justify="center">
-          <v-col cols="6" v-if="(score < blocks.length && !gameOver)">
-            <v-row justify="center" class="my-5">
-              <v-col cols="3" v-for="(block, index) in shuffledBlocks" :key="index">
+        <v-row justify="center" class="mx-lg-5">
+          <v-sheet v-if="(score < blocks.length && !gameOver)" class="bg-transparent d-flex justify-center align-center flex-column">
+            <v-row justify="center" class="mt-5" height="90vh">
+              <v-col cols="3" v-for="(block, index) in shuffledBlocks" :key="index" align="center">
                 <v-btn
-                  cols="6"
                   @click="selectCard(index)"
                   :style="{ backgroundColor: block.selected ? block.color : 'black' }"
-                  class="mx-1 my-3"
-                  width="100px"
-                  height="100px"
+                  class="blocks mx-1 my-3"
                 >
                 </v-btn>
               </v-col>
             </v-row>
             <v-row justify="center" class="bg-transparent">
-              <div class="d-flex justify-space-around mb-6 bg-transparent">
+              <div class="d-flex justify-space-around align-center mb-6 bg-transparent flex-column flex-md-row">
                 <v-sheet class="bg-transparent">
                  
                     <v-btn class="ma-5 bg-white"><router-link to="./"><h3>Back to Main Menu</h3></router-link></v-btn>
@@ -49,8 +46,8 @@
                 
               </div>
             </v-row>
-          </v-col>
-          <v-sheet v-else-if="(score < blocks.length && gameOver)" class="d-flex justify-center align-center flex-column my-10 ga-10 bg-transparent">
+          </v-sheet>
+          <v-sheet v-else-if="(score < blocks.length && gameOver)" class="d-flex justify-center align-center flex-column-reverse my-10 ga-10 bg-transparent">
             <h3>Game Over</h3>
             <h3>Score : {{ score }}/{{ blocks.length/2 }}</h3>
             <v-btn @click="resetGame()">Try Again </v-btn>
@@ -175,6 +172,23 @@ h3 {
   border: 3px solid black;
   text-decoration: none;
   color: black;
+  max-width: 300px;
+  min-width: 200px;
+  width: 30vw;
+}
+
+.blocks{
+  width: 15vw;
+  height: 15vw;
+  min-width: 0;
+  max-width: 100px;
+  max-height: 200px;
+  
+}
+@media (min-width: 800px) {
+  .blocks {
+    max-width: 200px;
+  }
 }
 
 .router-link {

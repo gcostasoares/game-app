@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container d-flex flex-column justify-center align-center">
+    <div class="d-flex flex-column justify-center align-center text-center">
       <v-row justify="center" class="my-10">
       <h1>Welcome to the Game App</h1>
      </v-row>
@@ -18,7 +18,9 @@
 
 <style scoped>
 .v-btn {
-  width: 300px;
+  max-width: 300px;
+  min-width: 150px;
+  width: 30vw;
   margin-bottom: 30px;
   background-color: white;
   border: 3px solid black;
@@ -26,8 +28,7 @@
   color: black;
 }
 
-.container {
-  height: 30vw;
-  width: auto;
+h1 {
+  font-size: 1.7rem;
 }
 </style>

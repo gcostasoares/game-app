@@ -7,13 +7,13 @@
               <h1>{{ questions[currentQuestion].question }}</h1>
             </v-sheet>
             <v-row justify="center" class="my-14">
-              <v-col cols="5">
+              <v-col cols="auto">
                 <v-row class="text-center">
                   <v-col cols="6" v-for="(option, index) in questions[currentQuestion].options" :key="index">
                     <v-btn @click="selectAnswer(index)" 
-                           class="my-5 bg-white"
+                           class="my-5 bg-white questions"
                            :class="{ 'bg-green': questions[currentQuestion].selected === index }"
-                           width="300px"
+                            width="30vw"
                            rounded="lg"
                            variant="outlined">
                       {{ option }}
@@ -23,8 +23,8 @@
               </v-col>
             </v-row>
   
-            <v-sheet class="d-flex justify-center bg-transparent ga-10">
-              <router-link to="./"><v-btn>Back to Main Menu</v-btn></router-link>
+            <v-sheet class="d-flex justify-center bg-transparent ga-10 flex-column-reverse flex-md-row align-center">
+              <router-link to="./"><v-btn width="60vw">Back to Main Menu</v-btn></router-link>
               <v-btn @click="previousButton" :disabled="currentQuestion == 0" width="200px" class="bg-white">Previous Question</v-btn>
               <v-btn @click="nextButton" v-if="currentQuestion < questions.length -1" width="200px">Next Question</v-btn>
               <v-btn @click="quizCompleted=true" v-else width="200px">End Quiz</v-btn>
@@ -164,7 +164,23 @@ h3 {
   border: 3px solid black;
   text-decoration: none;
   color: black;
+  max-width: 250px;
+
+  width: 30vw;
 }
+
+.questions {
+  width: 40vw;
+  max-width: 400px;
+}
+
+@media (max-width: 500px) {
+  .v-btn {
+    font-size: 0.7rem;
+  }
+
+}
+
 
 .router-link {
   text-decoration: none

@@ -36,5 +36,7 @@ export default {
   font-style: normal;
   
 }
+
+
 </style>
 
