@@ -3,7 +3,7 @@
     <v-main>
       <section v-if="!gameStarted">
         <v-row justify="center" class="my-12 bg-transparent">
-          <v-sheet class="my-3 my-12 bg-transparent text-center">
+          <v-sheet class="my-12 bg-transparent text-center">
             <h2>You have 60 seconds to finish the game</h2>
           </v-sheet>
         </v-row>
@@ -14,23 +14,24 @@
         </v-row> 
       </section>
       <section v-else>
-        <v-row justify="center" class="mx-lg-5">
-          <v-sheet v-if="(score < blocks.length && !gameOver)" class="bg-transparent d-flex justify-center align-center flex-column">
-            <v-row justify="center" class="mt-5" height="90vh">
-              <v-col cols="3" v-for="(block, index) in shuffledBlocks" :key="index" align="center">
-                <v-btn
-                  @click="selectCard(index)"
-                  :style="{ backgroundColor: block.selected ? block.color : 'black' }"
-                  class="blocks mx-1 my-3"
-                >
-                </v-btn>
-              </v-col>
-            </v-row>
+        <v-row justify="center">
+          <v-sheet v-if="(score < blocks.length && !gameOver && !gameWon)" class="bg-transparent d-flex justify-center align-center flex-column">
+            <v-row class="d-flex justify-center align-center mt-5 mb-5">
+                    <v-col cols="3" v-for="(block, index) in shuffledBlocks" :key="index" class="d-flex justify-center">
+                      <v-btn
+                          class="play-block"
+                          :class="{ 'card-unselected': !block.selected, 'card-selected': block.selected }"
+                          :style="{ '--selected-color': block.color }"
+                          @click="selectCard(index)"
+                        >
+                        </v-btn>
+                    </v-col>
+                  </v-row>
             <v-row justify="center" class="bg-transparent">
-              <div class="d-flex justify-space-around align-center mb-6 bg-transparent flex-column flex-md-row">
+              <div class="d-flex justify-space-around align-center bg-transparent flex-column flex-md-row">
                 <v-sheet class="bg-transparent">
                  
-                    <v-btn class="ma-5 bg-white"><router-link to="./"><h3>Back to Main Menu</h3></router-link></v-btn>
+                    <v-btn class="bg-green"><router-link to="./"><h3>Back to Main Menu</h3></router-link></v-btn>
       
                 </v-sheet>
                 <v-sheet class="bg-transparent">
@@ -47,14 +48,18 @@
               </div>
             </v-row>
           </v-sheet>
+          <v-sheet v-if="gameWon" class="bg-transparent">
+            <v-row class="d-flex justify-center align-center my-10 flex-column bg-transparent ga-10">
+            <h3>WOW!!</h3>
+            <h3>You won the game! Congratulations!</h3>
+            <v-btn @click="resetGame()">Try Again </v-btn>
+          </v-row>
+          </v-sheet>
           <v-sheet v-else-if="(score < blocks.length && gameOver)" class="d-flex justify-center align-center flex-column-reverse my-10 ga-10 bg-transparent">
             <h3>Game Over</h3>
             <h3>Score : {{ score }}/{{ blocks.length/2 }}</h3>
             <v-btn @click="resetGame()">Try Again </v-btn>
             <router-link to="./"><v-btn>Back to Main Menu</v-btn></router-link>
-          </v-sheet>
-          <v-sheet v-else>
-            <p>Hello</p>
           </v-sheet>
         </v-row>
       </section>
@@ -124,7 +129,7 @@ const selectCard = (index) => {
           blocks.value[i].selected = false
         })
         selectedIndices.value = []
-      }, 400)
+      }, 500)
     }
   }
 }
@@ -147,15 +152,42 @@ watch(timer, (currentTimer) => {
   }
 });
 
+let gameWon = ref(false);
+
+watch(score, (newScore) => {
+  console.log("Current Score: ", newScore);
+  if (newScore >= blocks.value.length / 16 && !gameWon.value) {
+    console.log("Winning Condition Met");
+    gameWon.value = true;
+  }
+});
+
+
 const resetGame = () => {
   gameOver.value = false;
   gameStarted.value = false;
+  gameWon.value = false;
   timer.value = 60;
+  score.value = 0;
+  shuffleArray(blocks.value);
+  blocks.value.forEach(block => {
+    block.selected = false;
+  });
 }
 
 </script>
 
 <style scoped>
+
+.card-unselected {
+  background: linear-gradient(135deg, #182213, #2D2D2D);
+  background-size: 100% 100%;
+  background-position: 0px 0px;
+}
+
+.card-selected {
+  background-color: var(--selected-color); 
+}
 
 .v-sheet {
   text-decoration: none;
@@ -167,29 +199,26 @@ h3 {
   color: black;
 }
 
-.v-btn{
-  background-color: white;
-  border: 3px solid black;
-  text-decoration: none;
-  color: black;
-  max-width: 300px;
-  min-width: 200px;
-  width: 30vw;
+.play-block {
+  width: 60px;
+  height: 60px
 }
 
-.blocks{
-  width: 15vw;
-  height: 15vw;
-  min-width: 0;
-  max-width: 100px;
-  max-height: 200px;
-  
-}
-@media (min-width: 800px) {
-  .blocks {
-    max-width: 200px;
+@media (min-width: 700px) {
+  .play-block {
+    width: 110px;
+    height: 110px;
   }
 }
+
+@media (min-width: 1100px) {
+  .play-block {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+
 
 .router-link {
   text-decoration: none
