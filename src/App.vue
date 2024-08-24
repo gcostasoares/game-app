@@ -29,8 +29,6 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: rgb(242,205,50);
-  background: linear-gradient(257deg, rgba(242,205,50,1) 0%, rgba(206,221,77,1) 100%);
   font-family: "Turret Road", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -50,6 +48,13 @@ html {
 body {
   display: flex;
   justify-content: center;
+}
+
+main {
+  background-color: transparent;
+}
+.v-application {
+  background-color: transparent;
 }
 
 
