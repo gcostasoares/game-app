@@ -12,7 +12,7 @@
                   <v-col cols="6" v-for="(option, index) in questions[currentQuestion].options" :key="index">
                     <v-btn @click="selectAnswer(index)" 
                            class="my-5 bg-white questions"
-                           :class="{ 'bg-green': questions[currentQuestion].selected === index }"
+                           :class="{ 'bg-blue': questions[currentQuestion].selected === index }"
                             width="30vw"
                            rounded="lg"
                            variant="outlined">
@@ -52,56 +52,62 @@
   
   const questions = ref([
   {
-      question: 'What is the capital of Australia?',
-      options: ['Sydney', 'Melbourne', 'Canberra', 'Perth'],
-      answer: 2
-    },
-    {
-      question: 'Which river is the longest in the world?',
-      options: ['Amazon', 'Nile', 'Yangtze', 'Mississippi'],
-      answer: 1
-    },
-    {
-      question: 'Which country is known as the Land of the Rising Sun?',
-      options: ['China', 'Japan', 'South Korea', 'Thailand'],
-      answer: 1
-    },
-    {
-      question: 'What is the largest desert in the world?',
-      options: ['Gobi', 'Sahara', 'Arabian', 'Kalahari'],
-      answer: 1
-    },
-    {
-      question: 'Which ocean is the largest?',
-      options: ['Atlantic', 'Indian', 'Pacific', 'Arctic'],
-      answer: 2
-    },
-    {
-      question: 'Which country is the smallest by land area?',
-      options: ['Monaco', 'Maldives', 'Vatican City', 'Nauru'],
-      answer: 2
-    },
-    {
-      question: 'What is the tallest mountain in the world?',
-      options: ['Mount Everest', 'K2', 'Kangchenjunga', 'Lhotse'],
-      answer: 0
-    },
-    {
-      question: 'Which city is known as the City of Love?',
-      options: ['Paris', 'Rome', 'Venice', 'Florence'],
-      answer: 0
-    },
-    {
-      question: 'What is the largest island in the world?',
-      options: ['Greenland', 'Australia', 'Borneo', 'Madagascar'],
-      answer: 0
-    },
-    {
-      question: 'Which continent is the most populous?',
-      options: ['Asia', 'Africa', 'Europe', 'North America'],
-      answer: 0
-    }
-  ])
+    question: 'Which planet is known as the Red Planet?',
+    options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
+    answer: 1
+  },
+  {
+    question: 'In which city would you find the famous “Christ the Redeemer” statue?',
+    options: ['Buenos Aires', 'Sao Paulo', 'Rio de Janeiro', 'Lima'],
+    answer: 2
+  },
+  {
+    question: 'What is the name of the fictional African country in the movie “Black Panther”?',
+    options: ['Zaire', 'Naboo', 'Wakanda', 'Krypton'],
+    answer: 2
+  },
+  {
+    question: 'Which animal is known as the King of the Jungle?',
+    options: ['Lion', 'Tiger', 'Elephant', 'Giraffe'],
+    answer: 0
+  },
+  {
+    question: 'What is the rarest blood type in humans?',
+    options: ['O+', 'A-', 'AB-', 'B+'],
+    answer: 2
+  },
+  {
+    question: 'In which year did the Titanic sink?',
+    options: ['1912', '1905', '1898', '1923'],
+    answer: 0
+  },
+  {
+    question: 'Which musical instrument has keys, pedals, and strings?',
+    options: ['Guitar', 'Piano', 'Violin', 'Drums'],
+    answer: 1
+  },
+  {
+    question: 'What is the smallest bone in the human body?',
+    options: ['Stapes', 'Femur', 'Tibia', 'Humerus'],
+    answer: 0
+  },
+  {
+    question: 'Which company created the first personal computer?',
+    options: ['IBM', 'Apple', 'Microsoft', 'Compaq'],
+    answer: 1
+  },
+  {
+    question: 'What is the name of the galaxy that contains our solar system?',
+    options: ['Andromeda', 'Milky Way', 'Triangulum', 'Whirlpool'],
+    answer: 1
+  },
+  {
+    question: 'Which element is used to create a green color in fireworks?',
+    options: ['Sodium', 'Strontium', 'Copper', 'Barium'],
+    answer: 3
+  }
+])
+
   
   let quizCompleted = ref(false)
   const currentQuestion = ref(0)
