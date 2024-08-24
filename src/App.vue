@@ -40,3 +40,12 @@ export default {
 
 </style>
 
+<style>
+
+html {
+  background: rgb(242,205,50);
+  background: linear-gradient(257deg, rgba(242,205,50,1) 0%, rgba(206,221,77,1) 100%);
+}
+
+
+</style>
