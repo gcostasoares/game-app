@@ -47,5 +47,10 @@ html {
   background: linear-gradient(257deg, rgba(242,205,50,1) 0%, rgba(206,221,77,1) 100%);
 }
 
+body {
+  display: flex;
+  justify-content: center;
+}
+
 
 </style>
