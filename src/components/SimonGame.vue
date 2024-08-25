@@ -103,7 +103,8 @@ const toggleBlocks = (index) => {
 };
 
 const computerTurn = () => {
-  const randomIndex = Math.floor(Math.random() * 4);
+  setTimeout(() => {
+    const randomIndex = Math.floor(Math.random() * 4);
   selectedBlockComputer.value.push(randomIndex);
   let delay = 0;
   isComputerTurn.value = true;
@@ -120,6 +121,8 @@ const computerTurn = () => {
     }, delay);
     delay += 1400;
   }
+  }, 600);
+  
 };
 
 const resetGame = () => {
