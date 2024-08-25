@@ -156,7 +156,7 @@ let gameWon = ref(false);
 
 watch(score, (newScore) => {
   console.log("Current Score: ", newScore);
-  if (newScore >= blocks.value.length / 16 && !gameWon.value) {
+  if (newScore >= blocks.value.length / 2 && !gameWon.value) {
     console.log("Winning Condition Met");
     gameWon.value = true;
   }
